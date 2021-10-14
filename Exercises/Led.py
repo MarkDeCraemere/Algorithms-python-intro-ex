@@ -1,20 +1,26 @@
 class Led:
-    def __init__(self):
-        self.__LedStates = 0
+	def __init__(self, pin):
+		self.__isOn = False
+		self.__pin = pin
 
-    def GetLedBin(self):
-        return bin(self.__LedStates)
+	def on(self):
+		self.__isOn = True
+		return self.__isOn
 
-    def GetLedDecimal(self):
-        return self.__LedStates
+	def off(self):
+		self.__isOn = False
+		return self.__isOn
 
-    def GetLedHex(self):
-        return hex(self.__LedStates)
+	def toggle(self):
+		self.__isOn = not self.__isOn
+		return self.__isOn
 
-    def Increment(self):
-        if self.__LedStates < 16:
-            self.__LedStates += 1
+	def getState(self):
+		return self.__isOn
 
-    def Decrement(self):
-        if self.__LedStates > 0:
-            self.__LedStates -= 1
+led = Led(1)
+print(led.getState())
+print(led.on())
+print(led.toggle())
+otherled = Led(2)
+print(otherled.getState())
